@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <nav style="background-color: rgb(159, 229, 229); padding: 20px; margin-bottom: 20px;border: radius 5px; border: 1px solid#ccc;">
+            <button>Home</button>
+            <button>Login</button>
+
+        </nav>
+    </div>
+    <div>
+        <form class="form">
+            <label for="guessfield" id="guess">Guess a Number</label>
+            <input type="text" id="guessfield" class="guessfield"/>
+            <input type="submit" id="subt" value="submitGuess" class="guessSubmit"/>
+        </form>
+        <div class="resultParas">
+            <p>Previous Guesses : <span class="guesses"></span></p>
+            <p>Guesses remaining : <span class="lastResult">10</span></p>
+            <p class="lowOrHi"></p>
+        </div>
+    </div>
+</body>
+<script>
+    let randomNumber = Math.floor(Math.random() * 100 + 1)
+
+    const submit = document.querySelector("#subt")
+    const userInput = document.querySelector("#guessfield")
+    const guessSlot = document.querySelector(".guesses")
+    const remaining = document.querySelector(".lastResult")
+    const lowOrHi = document.querySelector(".lowOrHi")
+    const startOver = document.querySelector(".resultParas")
+
+    const p = document.createElement('p')
+
+    let prevGuess = []
+    let numGuess = 1
+
+    let playGame = true
+
+    if(playGame){
+        submit.addEventListener('click',function(e){
+            e.preventDefault()
+            let guess = parseInt(userInput.value)
+            console.log(guess);
+            validateGuess(guess)
+        })
+    }
+
+    function validateGuess(guess){
+        if(isNaN(guess)){
+            alert('please enter a vaild number')
+        }else if(guess < 1){
+            alert('enter a number more than 1')
+        }else if(guess > 100){
+            alert('enter a number less than 100')
+        }else{
+            prevGuess.push(guess)
+            if(numGuess >= 10){
+                displayGuess(guess)
+                dipslayMessage(`Game over. Random number was ${randomNumber}`)  
+                endgame() 
+            }else{
+                displayGuess(guess)
+                checkGuess(guess)
+
+            }
+        }
+
+    }
+
+    function checkGuess(guess){
+        if(guess === randomNumber){
+        dipslayMessage(`You guessed it right`)
+        endgame()
+        }else if(guess < randomNumber){
+            dipslayMessage(`You guessed number is less`)
+        }else if(guess > randomNumber){
+            dipslayMessage(`Your guessed number is greater`)
+        }
+    }
+
+    function displayGuess(guess){
+        userInput.value = ''  //for cleanup
+        guessSlot.innerHTML += `${guess}  ` //for previous guesses
+        numGuess++
+        remaining.innerHTML = `${11- numGuess}`
+    }
+
+    function dipslayMessage(message){
+        lowOrHi.innerHTML = `<h2>${message}</h2>`
+    }
+
+    function endgame(){
+        userInput.value = ''
+        userInput.setAttribute('disabled','')
+        p.classList.add('button')
+        p.innerHTML = '<h2 id="newGame">Start New Game</h2>'
+        startOver.appendChild(p)
+        playGame = false
+        startGame()
+
+    }
+
+    function startGame(){
+        const newGame  = document.querySelector('#newGame')
+        newGame.addEventListener('click',function(){
+            randomNumber = Math.floor(Math.random()*100+1)
+            prevGuess = []
+            numGuess = 1
+            guessSlot.innerHTML = ''
+            remaining.innerHTML = `${11-numGuess}`
+            userInput.removeAttribute('disabled')
+            startOver.removeChild(p)
+            playGame = true
+        })
+    }
+   
+
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="color">
+        <h1 id="red">red</h1>
+        <h1 id="blue">blue</h1>
+        <h1 id="green">green</h1>
+        <h1 id="grey">grey</h1>
+        <h1 id="yellow">yellow</h1>
+    </div>
+</body>
+<script>
+    const colors = document.querySelectorAll(".color")
+    // console.log(colors);
+    const body = document.querySelector('body')
+
+    colors.forEach(function(color){
+        color.addEventListener('click',function(e){
+            if(e.target.id === "red"){
+                body.style.backgroundColor = e.target.id
+            }if(e.target.id === "blue"){
+                body.style.backgroundColor = e.target.id
+            }if(e.target.id === "green"){
+                body.style.backgroundColor = e.target.id
+            }if(e.target.id === "grey"){
+                body.style.backgroundColor = e.target.id
+            }if(e.target.id === "yellow"){
+                body.style.backgroundColor = e.target.id
+            }
+            
+        })
+
+    })
+
+
+
+
+
+</script>
+</html>

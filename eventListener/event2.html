@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141; color: white;">
+    <h1>Code with Pankaj</h1>
+    <buttton id="stop">Stop</buttton>
+</body>
+<script>
+
+    const pankaj = function(){
+        console.log("My name is Pankaj");
+    }
+
+    const textChange=  function(){
+        document.querySelector('h1').innerHTML= "Best JS course by Hitesh"
+
+    }
+
+    const change = setTimeout(textChange,10000)
+    // console.log(change);
+
+    // clearTimeout(change)
+
+    const clear = document.querySelector('#stop').addEventListener('click',function(){
+        clearTimeout(change)
+        console.log("STOPPED");
+    })
+    
+    
+    
+</script>
+</html>

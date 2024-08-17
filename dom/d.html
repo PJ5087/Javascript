@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM | With Pankaj</title>
+</head>
+<body>
+    <div class="parent">
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thrusday</div>
+    </div>
+</body>
+<script>
+   const ars = document.querySelector('.parent')
+   ars.style.color="red"
+
+//    console.log(ars);
+//    console.log(ars.children);
+//    console.log(ars.children[1].innerHTML);
+
+   for(let i=0;i<ars.children.length;i++){
+    // console.log(ars.children[i].innerHTML);
+
+}
+
+ars.children[1].style.color="blue"
+// console.log(ars.firstElementChild);
+// console.log(ars.lastElementChild);
+
+const dayOne = document.querySelector('.day')
+// console.log(dayOne);
+// console.log(dayOne.parentElement);
+// console.log(dayOne.nextElementSibling);
+
+console.log("Node: ", ars.childNodes);
+   
+</script>
+</html>
